@@ -14,68 +14,74 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            perspective: 1200px;
+            perspective: 1000px;
             font-family: 'Arial Black', sans-serif;
         }
 
         #semi-finals-text {
-            font-size: 52px;
+            font-size: 60px;
             font-weight: 900;
-            color: #0a192f; /* Dark navy base */
+            color: #e0e0e0; /* Light gray for contrast */
             text-shadow: 
-                1px 1px 0 #112240,
-                2px 2px 0 #1a2a4a,
-                3px 3px 0 #233356,
-                4px 4px 10px rgba(0, 0, 0, 0.6);
+                0 1px 0 #ccc,
+                0 2px 0 #999,
+                0 3px 0 #666,
+                0 4px 0 #333,
+                0 5px 10px rgba(0, 0, 0, 0.7);
             transform-style: preserve-3d;
             animation: 
-                float3d 8s ease-in-out infinite,
-                colorShift 10s linear infinite;
+                tilt3d 8s ease-in-out infinite;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        @keyframes float3d {
+        @keyframes tilt3d {
             0%, 100% { 
                 transform: 
-                    translateY(0) 
-                    rotateX(15deg) 
-                    rotateY(0deg)
+                    rotateX(0deg) 
+                    rotateY(0deg) 
                     scale(1);
+                color: #e0e0e0;
                 text-shadow: 
-                    1px 1px 0 #112240,
-                    2px 2px 0 #1a2a4a,
-                    3px 3px 0 #233356,
-                    4px 4px 10px rgba(0, 0, 0, 0.6);
+                    0 1px 0 #ccc,
+                    0 2px 0 #999,
+                    0 3px 0 #666,
+                    0 4px 0 #333,
+                    0 5px 10px rgba(0, 0, 0, 0.7);
             }
             25% { 
                 transform: 
-                    translateY(-15px) 
                     rotateX(10deg) 
-                    rotateY(90deg)
+                    rotateY(10deg) 
                     scale(1.05);
+                color: #ffffff;
+                text-shadow: 
+                    0 1px 0 #ccc,
+                    0 2px 0 #999,
+                    0 3px 0 #666,
+                    0 4px 0 #333,
+                    0 5px 15px rgba(0, 0, 0, 0.9);
             }
             50% { 
                 transform: 
-                    translateY(0) 
-                    rotateX(15deg) 
-                    rotateY(180deg)
+                    rotateX(0deg) 
+                    rotateY(0deg) 
                     scale(1);
+                color: #e0e0e0;
             }
             75% { 
                 transform: 
-                    translateY(-10px) 
-                    rotateX(20deg) 
-                    rotateY(270deg)
-                    scale(1.03);
+                    rotateX(-10deg) 
+                    rotateY(-10deg) 
+                    scale(1.05);
+                color: #ffffff;
+                text-shadow: 
+                    0 1px 0 #ccc,
+                    0 2px 0 #999,
+                    0 3px 0 #666,
+                    0 4px 0 #333,
+                    0 5px 15px rgba(0, 0, 0, 0.9);
             }
-        }
-
-        @keyframes colorShift {
-            0%, 100% { color: #0a192f; }
-            25% { color: #172a45; }
-            50% { color: #1f365d; }
-            75% { color: #274177; }
         }
     </style>
 </head>
