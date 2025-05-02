@@ -19,18 +19,19 @@
         }
 
         #semi-finals-text {
-            font-size: 40px;
+            font-size: 48px; /* Slightly larger for outdoor visibility */
             font-weight: 900;
-            color: #8B0000; /* Dark red */
+            color: #00FFFF; /* Vibrant cyan */
             text-shadow: 
-                0 2px 0 #000000,
-                0 4px 0 #000000,
-                0 6px 10px rgba(139, 0, 0, 0.7);
+                0 3px 0 #0066CC, /* Dark blue shadow for depth */
+                0 6px 0 #003366, /* Deeper shadow */
+                0 8px 15px rgba(0, 100, 255, 0.6); /* Glow effect */
             transform-style: preserve-3d;
             animation: 
-                rotate3d 12s linear infinite,
-                subtleGlow 4s ease-in-out infinite;
+                rotate3d 15s linear infinite, /* Slower rotation */
+                subtleGlow 3s ease-in-out infinite;
             text-align: center;
+            letter-spacing: 2px; /* Better readability */
         }
 
         @keyframes rotate3d {
@@ -41,16 +42,16 @@
         @keyframes subtleGlow {
             0%, 100% { 
                 text-shadow: 
-                    0 2px 0 #000000,
-                    0 4px 0 #000000,
-                    0 6px 10px rgba(139, 0, 0, 0.7);
+                    0 3px 0 #0066CC,
+                    0 6px 0 #003366,
+                    0 8px 15px rgba(0, 100, 255, 0.6);
             }
             50% { 
                 text-shadow: 
-                    0 2px 0 #000000,
-                    0 4px 0 #000000,
-                    0 6px 15px rgba(200, 0, 0, 0.9),
-                    0 0 10px rgba(255, 0, 0, 0.5);
+                    0 3px 0 #0066CC,
+                    0 6px 0 #003366,
+                    0 8px 25px rgba(0, 200, 255, 0.9),
+                    0 0 20px rgba(0, 255, 255, 0.7); /* Stronger glow */
             }
         }
     </style>
