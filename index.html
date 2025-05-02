@@ -8,116 +8,140 @@
         body {
             margin: 0;
             padding: 0;
-            background: transparent; /* Critical for OBS/Streamlabs */
+            background: transparent;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
+            perspective: 1000px;
+            font-family: 'Arial Black', sans-serif;
         }
 
-        /* Semi-Finals Animated Text */
         #semi-finals-text {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            font-weight: bold;
-            color: #FFD700; /* Gold */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-            opacity: 0; /* Start hidden */
-            animation: fadeInOut 3s ease-in-out infinite;
+            transform: translate(-50%, -50%) rotateX(0deg);
+            font-size: 80px;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 
+                0 0 10px #FF4500,
+                0 0 20px #FF8C00,
+                0 0 30px #FFD700,
+                0 0 40px #FFFFFF,
+                3px 3px 0px #FF0000,
+                6px 6px 0px #FF4500;
+            opacity: 0;
+            animation: 
+                fadeInOut 3s ease-in-out infinite,
+                colorPulse 4s linear infinite,
+                rotate3d 8s linear infinite;
+            transform-style: preserve-3d;
         }
 
-        /* Animation Effects */
         @keyframes fadeInOut {
-            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            0%, 100% { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) rotateX(90deg) scale(0.5); 
+            }
+            20%, 80% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) rotateX(0deg) scale(1); 
+            }
         }
 
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #FFD700; }
-            50% { text-shadow: 0 0 20px #FF4500, 0 0 30px #FFD700; }
-            100% { text-shadow: 0 0 10px #FFD700; }
+        @keyframes colorPulse {
+            0% { color: #FFD700; }
+            25% { color: #FF8C00; }
+            50% { color: #FF4500; }
+            75% { color: #FF6347; }
+            100% { color: #FFD700; }
         }
 
-        /* Log Container (for debugging) */
-        #log-container {
+        @keyframes rotate3d {
+            0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+            25% { transform: translate(-50%, -50%) rotateX(20deg) rotateY(90deg); }
+            50% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(180deg); }
+            75% { transform: translate(-50%, -50%) rotateX(-20deg) rotateY(270deg); }
+            100% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(360deg); }
+        }
+
+        .particle {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            max-width: 300px;
-            display: none; /* Hide by default (enable for debugging) */
+            background: radial-gradient(circle, #FFD700, #FF4500);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Animated "Semi-Finals" Text -->
     <div id="semi-finals-text">SEMI-FINALS</div>
 
-    <!-- Debug Logs (Visible in Browser Console + On-Screen) -->
-    <div id="log-container"></div>
-
     <script>
-        // ===== Configuration =====
-        const DEBUG_MODE = false; // Set to false to hide on-screen logs
-        const ANIMATION_DURATION = 3000; // 3 seconds
-
-        // ===== DOM Elements =====
-        const semiFinalsText = document.getElementById('semi-finals-text');
-        const logContainer = document.getElementById('log-container');
-
-        // ===== Logging Function =====
-        function log(message) {
-            const timestamp = new Date().toLocaleTimeString();
-            const logEntry = `[${timestamp}] ${message}`;
-            
-            if (DEBUG_MODE) {
-                // Print to browser console
-                console.log(logEntry);
+        // Enhanced 3D animation with particles
+        const textElement = document.getElementById('semi-finals-text');
+        
+        // Create color-changing 3D text
+        function initText() {
+            textElement.style.opacity = '1';
+            createParticles();
+            setInterval(createParticles, 2000);
+        }
+        
+        // Create celebration particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
                 
-                // Display on-screen
-                const logElement = document.createElement('div');
-                logElement.textContent = logEntry;
-                logContainer.appendChild(logElement);
-                logContainer.scrollTop = logContainer.scrollHeight;
+                // Random properties
+                const size = Math.random() * 15 + 5;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const duration = Math.random() * 2000 + 1000;
+                const delay = Math.random() * 1000;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.boxShadow = `0 0 ${size*2}px ${size/2}px #FFD700`;
+                
+                // Animate particle
+                particle.style.animation = `
+                    floatUp ${duration}ms ${delay}ms forwards,
+                    fadeParticle ${duration}ms ${delay}ms forwards
+                `;
+                
+                document.body.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, duration + delay);
+            }
+            
+            // Add particle animations if not exists
+            if (!document.getElementById('particle-styles')) {
+                const style = document.createElement('style');
+                style.id = 'particle-styles';
+                style.textContent = `
+                    @keyframes floatUp {
+                        0% { transform: translateY(0); }
+                        100% { transform: translateY(-200px); }
+                    }
+                    @keyframes fadeParticle {
+                        0% { opacity: 0.8; transform: scale(0.5); }
+                        100% { opacity: 0; transform: scale(1.5); }
+                    }
+                `;
+                document.head.appendChild(style);
             }
         }
-
-        // ===== Animation Logic =====
-        function startAnimation() {
-            log("Starting Semi-Finals animation...");
-            
-            // Apply multiple effects
-            semiFinalsText.style.opacity = '1';
-            semiFinalsText.style.animation = `
-                fadeInOut ${ANIMATION_DURATION}ms ease-in-out infinite,
-                glow ${ANIMATION_DURATION * 1.5}ms ease-in-out infinite
-            `;
-
-            // Log animation state every second
-            const animationInterval = setInterval(() => {
-                log("Animation running...");
-            }, 1000);
-
-            // Stop logging after 10 seconds (for demo)
-            setTimeout(() => {
-                clearInterval(animationInterval);
-                log("Animation demo complete.");
-            }, 10000);
-        }
-
-        // ===== Initialize =====
-        if (DEBUG_MODE) {
-            logContainer.style.display = 'block';
-            log("Debug mode enabled. Overlay initialized.");
-        }
-
-        // Start animation when page loads
-        window.onload = startAnimation;
+        
+        // Start everything when loaded
+        window.onload = initText;
     </script>
 </body>
 </html>
