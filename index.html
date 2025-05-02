@@ -14,78 +14,92 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            perspective: 1000px;
             font-family: 'Arial Black', sans-serif;
+        }
+
+        .text-container {
+            position: relative;
+            overflow: hidden;
+            height: 100px;
         }
 
         #semi-finals-text {
             font-size: 60px;
             font-weight: 900;
-            color: #e0e0e0; /* Light gray for contrast */
+            color: #0a3d8f; /* Dark blue */
             text-shadow: 
-                0 1px 0 #ccc,
-                0 2px 0 #999,
-                0 3px 0 #666,
-                0 4px 0 #333,
-                0 5px 10px rgba(0, 0, 0, 0.7);
-            transform-style: preserve-3d;
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-100%);
             animation: 
-                tilt3d 8s ease-in-out infinite;
-            text-align: center;
-            letter-spacing: 2px;
+                curtainDrop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+                floatPulse 4s ease-in-out infinite 1.5s;
         }
 
-        @keyframes tilt3d {
-            0%, 100% { 
-                transform: 
-                    rotateX(0deg) 
-                    rotateY(0deg) 
-                    scale(1);
-                color: #e0e0e0;
-                text-shadow: 
-                    0 1px 0 #ccc,
-                    0 2px 0 #999,
-                    0 3px 0 #666,
-                    0 4px 0 #333,
-                    0 5px 10px rgba(0, 0, 0, 0.7);
-            }
-            25% { 
-                transform: 
-                    rotateX(10deg) 
-                    rotateY(10deg) 
-                    scale(1.05);
-                color: #ffffff;
-                text-shadow: 
-                    0 1px 0 #ccc,
-                    0 2px 0 #999,
-                    0 3px 0 #666,
-                    0 4px 0 #333,
-                    0 5px 15px rgba(0, 0, 0, 0.9);
-            }
-            50% { 
-                transform: 
-                    rotateX(0deg) 
-                    rotateY(0deg) 
-                    scale(1);
-                color: #e0e0e0;
-            }
-            75% { 
-                transform: 
-                    rotateX(-10deg) 
-                    rotateY(-10deg) 
-                    scale(1.05);
-                color: #ffffff;
-                text-shadow: 
-                    0 1px 0 #ccc,
-                    0 2px 0 #999,
-                    0 3px 0 #666,
-                    0 4px 0 #333,
-                    0 5px 15px rgba(0, 0, 0, 0.9);
-            }
+        /* Curtain falling effect */
+        @keyframes curtainDrop {
+            0% { transform: translateY(-100%); }
+            80% { transform: translateY(10%); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Subtle floating after curtain drop */
+        @keyframes floatPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Decorative curtain elements */
+        .curtain {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, #001f3f, #003366);
+            z-index: -1;
+            animation: curtainOpen 1s ease-out forwards 0.5s;
+        }
+
+        .curtain-left {
+            left: 0;
+            transform-origin: left;
+        }
+
+        .curtain-right {
+            right: 0;
+            transform-origin: right;
+        }
+
+        @keyframes curtainOpen {
+            0% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
         }
     </style>
 </head>
 <body>
-    <div id="semi-finals-text">SEMI-FINALS</div>
+    <div class="text-container">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        <div id="semi-finals-text">SEMI-FINALS</div>
+    </div>
+
+    <script>
+        // Optional: Re-trigger animation on click for testing
+        document.body.addEventListener('click', () => {
+            const text = document.getElementById('semi-finals-text');
+            text.style.animation = 'none';
+            void text.offsetHeight;
+            text.style.animation = 
+                'curtainDrop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, ' +
+                'floatPulse 4s ease-in-out infinite 1.5s';
+            
+            // Reset curtains
+            document.querySelectorAll('.curtain').forEach(curtain => {
+                curtain.style.animation = 'none';
+                void curtain.offsetHeight;
+                curtain.style.animation = 'curtainOpen 1s ease-out forwards 0.5s';
+            });
+        });
+    </script>
 </body>
 </html>
