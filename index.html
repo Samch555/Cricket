@@ -18,17 +18,37 @@
         }
 
         #semi-finals-text {
-            font-size: 36px; /* Reduced size */
+            font-size: 36px;
             font-weight: 900;
             color: #0a3d8f; /* Dark blue */
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 
+                0 2px 0 #001f3f,
+                0 4px 0 #001a33;
+            transform: translateY(-100%) scale(1.5);
             opacity: 0;
-            animation: fadeInOut 4s ease-in-out infinite;
+            animation: stomp 2s cubic-bezier(0.5, 1.5, 0.5, 1) infinite;
         }
 
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        @keyframes stomp {
+            0% {
+                transform: translateY(-100%) scale(1.5);
+                opacity: 0;
+            }
+            15% {
+                transform: translateY(0) scale(0.9);
+                opacity: 1;
+            }
+            20% {
+                transform: translateY(0) scale(1.1);
+            }
+            25%, 75% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%) scale(0.8);
+                opacity: 0;
+            }
         }
     </style>
 </head>
