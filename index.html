@@ -28,52 +28,28 @@
                 0 6px 10px rgba(0, 20, 80, 0.5);
             transform-style: preserve-3d;
             animation: 
-                float3d 6s ease-in-out infinite,
-                pulse 3s ease-in-out infinite;
+                rotate3d 12s linear infinite,
+                subtleGlow 4s ease-in-out infinite;
             text-align: center;
         }
 
-        @keyframes float3d {
-            0%, 100% { 
-                transform: 
-                    rotateX(10deg) 
-                    rotateY(0deg) 
-                    translateY(0);
-            }
-            25% { 
-                transform: 
-                    rotateX(15deg) 
-                    rotateY(90deg) 
-                    translateY(-20px);
-            }
-            50% { 
-                transform: 
-                    rotateX(10deg) 
-                    rotateY(180deg) 
-                    translateY(0);
-            }
-            75% { 
-                transform: 
-                    rotateX(5deg) 
-                    rotateY(270deg) 
-                    translateY(-10px);
-            }
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
 
-        @keyframes pulse {
+        @keyframes subtleGlow {
             0%, 100% { 
                 text-shadow: 
                     0 2px 0 #001133,
                     0 4px 0 #000022,
-                    0 6px 10px rgba(0, 20, 80, 0.5),
-                    0 0 10px rgba(0, 100, 255, 0.3);
+                    0 6px 10px rgba(0, 20, 80, 0.5);
             }
             50% { 
                 text-shadow: 
                     0 2px 0 #001133,
                     0 4px 0 #000022,
-                    0 6px 20px rgba(0, 20, 80, 0.8),
-                    0 0 20px rgba(0, 150, 255, 0.6);
+                    0 6px 15px rgba(0, 50, 150, 0.7);
             }
         }
     </style>
