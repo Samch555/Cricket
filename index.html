@@ -1,45 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cricket Semi-Finals Overlay</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Semi-Finals Overlay</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent; /* Critical for OBS/Streamlabs */
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
 
-    .rotating-text {
-      font-size: 60px;
-      font-family: 'Segoe UI', sans-serif;
-      font-weight: bold;
-      background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: flipY 4s linear infinite, glow 6s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
+        /* Semi-Finals Animated Text */
+        #semi-finals-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 72px;
+            font-weight: bold;
+            color: #FFD700; /* Gold */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            opacity: 0; /* Start hidden */
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
 
-    @keyframes flipY {
-      0% { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
-    }
+        /* Animation Effects */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
 
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #302b63, 0 0 10px #0f0c29; }
-      50% { text-shadow: 0 0 15px #8a2be2, 0 0 30px #4b0082; }
-      100% { text-shadow: 0 0 5px #302b63, 0 0 10px #0f0c29; }
-    }
-  </style>
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #FFD700; }
+            50% { text-shadow: 0 0 20px #FF4500, 0 0 30px #FFD700; }
+            100% { text-shadow: 0 0 10px #FFD700; }
+        }
+
+        /* Log Container (for debugging) */
+        #log-container {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            max-width: 300px;
+            display: none; /* Hide by default (enable for debugging) */
+        }
+    </style>
 </head>
 <body>
-  <div class="rotating-text">🏏 Semi-Finals!</div>
+    <!-- Animated "Semi-Finals" Text -->
+    <div id="semi-finals-text">SEMI-FINALS</div>
+
+    <!-- Debug Logs (Visible in Browser Console + On-Screen) -->
+    <div id="log-container"></div>
+
+    <script>
+        // ===== Configuration =====
+        const DEBUG_MODE = true; // Set to false to hide on-screen logs
+        const ANIMATION_DURATION = 3000; // 3 seconds
+
+        // ===== DOM Elements =====
+        const semiFinalsText = document.getElementById('semi-finals-text');
+        const logContainer = document.getElementById('log-container');
+
+        // ===== Logging Function =====
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            
+            if (DEBUG_MODE) {
+                // Print to browser console
+                console.log(logEntry);
+                
+                // Display on-screen
+                const logElement = document.createElement('div');
+                logElement.textContent = logEntry;
+                logContainer.appendChild(logElement);
+                logContainer.scrollTop = logContainer.scrollHeight;
+            }
+        }
+
+        // ===== Animation Logic =====
+        function startAnimation() {
+            log("Starting Semi-Finals animation...");
+            
+            // Apply multiple effects
+            semiFinalsText.style.opacity = '1';
+            semiFinalsText.style.animation = `
+                fadeInOut ${ANIMATION_DURATION}ms ease-in-out infinite,
+                glow ${ANIMATION_DURATION * 1.5}ms ease-in-out infinite
+            `;
+
+            // Log animation state every second
+            const animationInterval = setInterval(() => {
+                log("Animation running...");
+            }, 1000);
+
+            // Stop logging after 10 seconds (for demo)
+            setTimeout(() => {
+                clearInterval(animationInterval);
+                log("Animation demo complete.");
+            }, 10000);
+        }
+
+        // ===== Initialize =====
+        if (DEBUG_MODE) {
+            logContainer.style.display = 'block';
+            log("Debug mode enabled. Overlay initialized.");
+        }
+
+        // Start animation when page loads
+        window.onload = startAnimation;
+    </script>
 </body>
 </html>
