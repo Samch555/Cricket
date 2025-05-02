@@ -2,43 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cricket Overlay</title>
+  <title>Rotating Semi-Finals</title>
   <style>
     body {
       margin: 0;
-      background: transparent;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
-    .glow-text {
-      font-size: 60px;
-      font-family: 'Arial', sans-serif;
+    .rotating-text {
+      font-size: 50px;
+      font-family: 'Arial Black', sans-serif;
       color: #fff;
-      text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1, 0 0 30px #00c9ff;
-      animation: pulse 1.5s infinite;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff9900;
+      animation: rotate 5s linear infinite, glow 2s ease-in-out infinite alternate;
     }
 
-    @keyframes pulse {
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes glow {
       0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.1);
-        opacity: 0.8;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff9900;
       }
       100% {
-        transform: scale(1);
-        opacity: 1;
+        text-shadow: 0 0 20px #00ffcc, 0 0 30px #ffff00, 0 0 40px #ff00ff;
       }
     }
   </style>
 </head>
 <body>
-  <div class="glow-text">🏏 Semi-Finals!</div>
+  <div class="rotating-text">🏏 Semi-Finals!</div>
 </body>
 </html>
