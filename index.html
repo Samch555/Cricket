@@ -14,40 +14,27 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            perspective: 800px;
             font-family: 'Arial Black', sans-serif;
         }
 
         #semi-finals-text {
             font-size: 36px;
             font-weight: 900;
-            color: #0a3d8f; /* Dark blue */
+            color: #0a3d8f;
             text-shadow: 
-                0 2px 0 #001f3f,
-                0 4px 0 #001a33;
-            transform: translateY(-100%) scale(1.5);
-            opacity: 0;
-            animation: stomp 2s cubic-bezier(0.5, 1.5, 0.5, 1) infinite;
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            animation: revolve 12s linear infinite;
         }
 
-        @keyframes stomp {
+        @keyframes revolve {
             0% {
-                transform: translateY(-100%) scale(1.5);
-                opacity: 0;
-            }
-            15% {
-                transform: translateY(0) scale(0.9);
-                opacity: 1;
-            }
-            20% {
-                transform: translateY(0) scale(1.1);
-            }
-            25%, 75% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
+                transform: rotateY(0deg);
             }
             100% {
-                transform: translateY(100%) scale(0.8);
-                opacity: 0;
+                transform: rotateY(360deg);
             }
         }
     </style>
