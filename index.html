@@ -19,20 +19,21 @@
         }
 
         #semi-finals-text {
-            font-size: 40px;
+            font-size: 38px;
             font-weight: 900;
-            color: #00c6ff; /* Vibrant blue */
-            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #0a3d8f; /* Dark blue base */
+            background: linear-gradient(to right, #0a3d8f, #0077b6); /* Blue gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 
-                0 2px 4px rgba(0,0,0,0.3),
-                0 4px 20px rgba(0, 198, 255, 0.5);
+                0 2px 4px rgba(0,0,0,0.4),
+                0 4px 12px rgba(10, 61, 143, 0.6);
             transform-style: preserve-3d;
             animation: 
                 float3d 8s ease-in-out infinite,
-                pulseGlow 3s ease-in-out infinite;
+                pulseGlow 4s ease-in-out infinite;
             letter-spacing: 2px;
+            position: relative;
         }
 
         /* 3D Floating Effect */
@@ -46,10 +47,10 @@
             }
             25% { 
                 transform: 
-                    translateY(-20px) 
+                    translateY(-15px) 
                     rotateX(15deg) 
                     rotateY(90deg)
-                    scale(1.05);
+                    scale(1.03);
             }
             50% { 
                 transform: 
@@ -63,7 +64,7 @@
                     translateY(-10px) 
                     rotateX(5deg) 
                     rotateY(270deg)
-                    scale(1.03);
+                    scale(1.02);
             }
         }
 
@@ -71,32 +72,33 @@
         @keyframes pulseGlow {
             0%, 100% { 
                 text-shadow: 
-                    0 2px 4px rgba(0,0,0,0.3),
-                    0 4px 20px rgba(0, 198, 255, 0.5);
+                    0 2px 4px rgba(0,0,0,0.4),
+                    0 4px 12px rgba(10, 61, 143, 0.6);
             }
             50% { 
                 text-shadow: 
-                    0 2px 8px rgba(0,0,0,0.4),
-                    0 6px 30px rgba(0, 255, 255, 0.8),
-                    0 0 40px rgba(255, 255, 255, 0.6);
+                    0 2px 8px rgba(0,0,0,0.5),
+                    0 6px 24px rgba(0, 119, 182, 0.8),
+                    0 0 20px rgba(100, 180, 255, 0.5);
             }
         }
 
-        /* Optional Reflection (Remove if too heavy) */
+        /* Subtle Reflection */
         #semi-finals-text::after {
             content: 'SEMI-FINALS';
             position: absolute;
             top: 100%;
             left: 0;
-            background: linear-gradient(to top, rgba(0,198,255,0.4), transparent);
+            background: linear-gradient(to top, rgba(10,61,143,0.3), transparent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transform: 
                 rotateX(80deg)
-                scaleY(0.6)
-                translateY(20px);
-            opacity: 0.6;
-            filter: blur(2px);
+                scaleY(0.5)
+                translateY(15px);
+            opacity: 0.5;
+            filter: blur(1.5px);
+            pointer-events: none;
         }
     </style>
 </head>
