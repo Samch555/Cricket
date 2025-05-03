@@ -1,108 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semi-Finals Overlay</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: transparent;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            perspective: 1000px;
-            font-family: 'Arial Black', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Semi-Finals Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      perspective: 1000px;
+      font-family: 'Arial Black', sans-serif;
+    }
 
-        #semi-finals-text {
-            font-size: 38px;
-            font-weight: 900;
-            color: #0a3d8f; /* Dark blue base */
-background: linear-gradient(to right, #f9d423, #ffcc00); /* Gold/Yellow gradient */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 
-                0 2px 4px rgba(0,0,0,0.4),
-                0 4px 12px rgba(10, 61, 143, 0.6);
-            transform-style: preserve-3d;
-            animation: 
-                float3d 8s ease-in-out infinite,
-                pulseGlow 4s ease-in-out infinite;
-            letter-spacing: 2px;
-            position: relative;
-        }
+    #semi-finals-text {
+      font-size: 38px;
+      font-weight: 900;
+      color: #ffcc00;
+      background: linear-gradient(to right, #f9d423, #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        0 4px 12px rgba(255, 204, 0, 0.6);
+      transform-style: preserve-3d;
+      animation:
+        float3d 8s ease-in-out infinite,
+        pulseGlow 4s ease-in-out infinite;
+      letter-spacing: 2px;
+      position: relative;
+    }
 
-        /* 3D Floating Effect */
-        @keyframes float3d {
-            0%, 100% { 
-                transform: 
-                    translateY(0) 
-                    rotateX(10deg) 
-                    rotateY(0deg)
-                    scale(1);
-            }
-            25% { 
-                transform: 
-                    translateY(-15px) 
-                    rotateX(15deg) 
-                    rotateY(90deg)
-                    scale(1.03);
-            }
-            50% { 
-                transform: 
-                    translateY(0) 
-                    rotateX(10deg) 
-                    rotateY(180deg)
-                    scale(1);
-            }
-            75% { 
-                transform: 
-                    translateY(-10px) 
-                    rotateX(5deg) 
-                    rotateY(270deg)
-                    scale(1.02);
-            }
-        }
+    @keyframes float3d {
+      0%, 100% {
+        transform:
+          translateY(0)
+          rotateX(10deg)
+          rotateY(0deg)
+          scale(1);
+      }
+      25% {
+        transform:
+          translateY(-15px)
+          rotateX(15deg)
+          rotateY(90deg)
+          scale(1.03);
+      }
+      50% {
+        transform:
+          translateY(0)
+          rotateX(10deg)
+          rotateY(180deg)
+          scale(1);
+      }
+      75% {
+        transform:
+          translateY(-10px)
+          rotateX(5deg)
+          rotateY(270deg)
+          scale(1.02);
+      }
+    }
 
-        /* Glow Pulse Effect */
-        @keyframes pulseGlow {
-            0%, 100% { 
-                text-shadow: 
-                    0 2px 4px rgba(0,0,0,0.4),
-                    0 4px 12px rgba(10, 61, 143, 0.6);
-            }
-            50% { 
-                text-shadow: 
-                    0 2px 8px rgba(0,0,0,0.5),
-                    0 6px 24px rgba(0, 119, 182, 0.8),
-                    0 0 20px rgba(100, 180, 255, 0.5);
-            }
-        }
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.4),
+          0 4px 12px rgba(255, 204, 0, 0.6);
+      }
+      50% {
+        text-shadow:
+          0 2px 8px rgba(0, 0, 0, 0.5),
+          0 6px 24px rgba(255, 215, 0, 0.8),
+          0 0 20px rgba(255, 239, 150, 0.6);
+      }
+    }
 
-        /* Subtle Reflection */
-        #semi-finals-text::after {
-            content: 'SEMI-FINALS';
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: linear-gradient(to top, rgba(10,61,143,0.3), transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transform: 
-                rotateX(80deg)
-                scaleY(0.5)
-                translateY(15px);
-            opacity: 0.5;
-            filter: blur(1.5px);
-            pointer-events: none;
-        }
-    </style>
+    #semi-finals-text::after {
+      content: 'SEMI-FINALS';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: linear-gradient(to top, rgba(255, 215, 0, 0.3), transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform:
+        rotateX(80deg)
+        scaleY(0.5)
+        translateY(15px);
+      opacity: 0.5;
+      filter: blur(1.5px);
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="semi-finals-text">SEMI-FINALS</div>
+  <div id="semi-finals-text">SEMI-FINALS</div>
 </body>
 </html>
