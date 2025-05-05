@@ -3,69 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YouTube Overlay Animation</title>
+  <title>YouTube Animation</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       background: transparent;
       overflow: hidden;
-      font-family: 'Arial Black', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      font-family: 'Arial Black', sans-serif;
     }
 
-    .container {
+    .stage {
+      width: 300px;
+      height: 100px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 20px;
+      position: relative;
     }
 
     .item {
+      position: absolute;
       opacity: 0;
-      transform: scale(0.5);
-      animation: popIn 0.6s forwards;
-    }
-
-    .item:nth-child(1) { animation-delay: 0s; }     /* YouTube Logo */
-    .item:nth-child(2) { animation-delay: 1s; }     /* Like */
-    .item:nth-child(3) { animation-delay: 2s; }     /* Share */
-    .item:nth-child(4) { animation-delay: 3s; }     /* Subscribe */
-    .item:nth-child(5) { animation-delay: 4s; }     /* Bell */
-
-    @keyframes popIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    img {
-      width: 50px;
-      height: auto;
-    }
-
-    .text {
-      font-size: 22px;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+      font-size: 28px;
       color: #ff0000;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .item.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .item img {
+      width: 120px;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo" />
+  <div class="stage">
+    <div class="item show" id="step0">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" />
     </div>
-    <div class="item text">Like</div>
-    <div class="item text">Share</div>
-    <div class="item text">Subscribe</div>
-    <div class="item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Font_Awesome_5_solid_bell.svg" alt="Bell Icon" width="28" />
+    <div class="item" id="step1">Like</div>
+    <div class="item" id="step2">Share</div>
+    <div class="item" id="step3">Subscribe</div>
+    <div class="item" id="step4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Font_Awesome_5_solid_bell.svg" alt="Bell Icon" width="40"/>
     </div>
   </div>
+
+  <script>
+    const steps = [
+      document.getElementById("step0"),
+      document.getElementById("step1"),
+      document.getElementById("step2"),
+      document.getElementById("step3"),
+      document.getElementById("step4"),
+    ];
+
+    let current = 0;
+
+    setInterval(() => {
+      steps[current].classList.remove("show");
+      current = (current + 1) % steps.length;
+      steps[current].classList.add("show");
+    }, 1000);
+  </script>
 </body>
 </html>
