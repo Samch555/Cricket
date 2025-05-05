@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YouTube Overlay</title>
+  <title>YouTube Overlay Animation</title>
   <style>
     body {
       margin: 0;
@@ -15,95 +15,57 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      gap: 20px;
     }
 
     .container {
       display: flex;
       align-items: center;
       gap: 20px;
-      animation: popIn 1s ease-out forwards;
     }
 
-    .youtube-logo {
-      width: 60px;
-      animation: bounce 2s infinite;
+    .item {
+      opacity: 0;
+      transform: scale(0.5);
+      animation: popIn 0.6s forwards;
     }
 
-    .action-text {
-      font-size: 24px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #ff0000;
-      position: relative;
-      animation: floatText 4s ease-in-out infinite;
-    }
-
-    .action-text span {
-      display: inline-block;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    .action-text:nth-child(2) span {
-      animation-delay: 0.2s;
-    }
-
-    .action-text:nth-child(3) span {
-      animation-delay: 0.4s;
-    }
-
-    .action-text:nth-child(4) span {
-      animation-delay: 0.6s;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes floatText {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-      }
-    }
+    .item:nth-child(1) { animation-delay: 0s; }     /* YouTube Logo */
+    .item:nth-child(2) { animation-delay: 1s; }     /* Like */
+    .item:nth-child(3) { animation-delay: 2s; }     /* Share */
+    .item:nth-child(4) { animation-delay: 3s; }     /* Subscribe */
+    .item:nth-child(5) { animation-delay: 4s; }     /* Bell */
 
     @keyframes popIn {
-      0% {
-        transform: scale(0.5);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
+      to {
         opacity: 1;
+        transform: scale(1);
       }
+    }
+
+    img {
+      width: 50px;
+      height: auto;
+    }
+
+    .text {
+      font-size: 22px;
+      color: #ff0000;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img class="youtube-logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
-    <div class="action-text"><span>Like</span></div>
-    <div class="action-text"><span>Share</span></div>
-    <div class="action-text"><span>Subscribe</span></div>
+    <div class="item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo" />
+    </div>
+    <div class="item text">Like</div>
+    <div class="item text">Share</div>
+    <div class="item text">Subscribe</div>
+    <div class="item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Font_Awesome_5_solid_bell.svg" alt="Bell Icon" width="28" />
+    </div>
   </div>
 </body>
 </html>
