@@ -3,103 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Semi-Finals Overlay</title>
+  <title>YouTube Overlay</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       background: transparent;
       overflow: hidden;
+      font-family: 'Arial Black', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      perspective: 1000px;
-      font-family: 'Arial Black', sans-serif;
+      gap: 20px;
     }
 
-    #semi-finals-text {
-      font-size: 38px;
-      font-weight: 900;
-      color: #ffcc00;
-      background: linear-gradient(to right, #f9d423, #ffcc00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.4),
-        0 4px 12px rgba(255, 204, 0, 0.6);
-      transform-style: preserve-3d;
-      animation:
-        float3d 8s ease-in-out infinite,
-        pulseGlow 4s ease-in-out infinite;
-      letter-spacing: 2px;
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      animation: popIn 1s ease-out forwards;
+    }
+
+    .youtube-logo {
+      width: 60px;
+      animation: bounce 2s infinite;
+    }
+
+    .action-text {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff0000;
       position: relative;
+      animation: floatText 4s ease-in-out infinite;
     }
 
-    @keyframes float3d {
+    .action-text span {
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .action-text:nth-child(2) span {
+      animation-delay: 0.2s;
+    }
+
+    .action-text:nth-child(3) span {
+      animation-delay: 0.4s;
+    }
+
+    .action-text:nth-child(4) span {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes bounce {
       0%, 100% {
-        transform:
-          translateY(0)
-          rotateX(10deg)
-          rotateY(0deg)
-          scale(1);
-      }
-      25% {
-        transform:
-          translateY(-15px)
-          rotateX(15deg)
-          rotateY(90deg)
-          scale(1.03);
+        transform: translateY(0);
       }
       50% {
-        transform:
-          translateY(0)
-          rotateX(10deg)
-          rotateY(180deg)
-          scale(1);
-      }
-      75% {
-        transform:
-          translateY(-10px)
-          rotateX(5deg)
-          rotateY(270deg)
-          scale(1.02);
+        transform: translateY(-10px);
       }
     }
 
-    @keyframes pulseGlow {
+    @keyframes floatText {
       0%, 100% {
-        text-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.4),
-          0 4px 12px rgba(255, 204, 0, 0.6);
+        transform: translateY(0);
       }
       50% {
-        text-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.5),
-          0 6px 24px rgba(255, 215, 0, 0.8),
-          0 0 20px rgba(255, 239, 150, 0.6);
+        transform: translateY(-5px);
       }
     }
 
-    #semi-finals-text::after {
-      content: 'SEMI-FINALS';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: linear-gradient(to top, rgba(255, 215, 0, 0.3), transparent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transform:
-        rotateX(80deg)
-        scaleY(0.5)
-        translateY(15px);
-      opacity: 0.5;
-      filter: blur(1.5px);
-      pointer-events: none;
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="semi-finals-text">SEMI-FINALS</div>
+  <div class="container">
+    <img class="youtube-logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
+    <div class="action-text"><span>Like</span></div>
+    <div class="action-text"><span>Share</span></div>
+    <div class="action-text"><span>Subscribe</span></div>
+  </div>
 </body>
 </html>
