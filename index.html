@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YouTube Animation</title>
+  <title>YouTube Sequence</title>
   <style>
     body {
       margin: 0;
@@ -41,7 +41,7 @@
 
     .frame {
       border: 4px solid red;
-      padding: 10px 30px;
+      padding: 12px 30px;
       border-radius: 20px;
       background: #ff0000;
       color: white;
@@ -57,7 +57,6 @@
     .item img.logo {
       width: 60px;
       height: auto;
-      filter: brightness(0) invert(1); /* Make it white */
     }
 
     .bell-icon {
@@ -94,11 +93,11 @@
 
   <script>
     const steps = [
-      document.getElementById("step0"),
-      document.getElementById("step1"),
-      document.getElementById("step2"),
-      document.getElementById("step3"),
-      document.getElementById("step4"),
+      document.getElementById("step0"), // YouTube
+      document.getElementById("step1"), // LIKE
+      document.getElementById("step2"), // SHARE
+      document.getElementById("step3"), // SUBSCRIBE
+      document.getElementById("step4"), // BELL
     ];
 
     let current = 0;
@@ -107,7 +106,7 @@
       steps[current].classList.remove("show");
       current = (current + 1) % steps.length;
       steps[current].classList.add("show");
-    }, 1000);
+    }, 1000); // 1-second delay between steps
   </script>
 </body>
 </html>
