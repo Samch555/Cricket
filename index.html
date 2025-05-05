@@ -68,20 +68,29 @@
 </head>
 <body>
   <div class="stage">
+    <!-- YouTube Icon -->
     <div class="item show" id="step0">
       <div class="frame">
-        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_square_(2017).svg" alt="YouTube Icon" />
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/240px-YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" />
       </div>
     </div>
+
+    <!-- Like -->
     <div class="item" id="step1">
       <div class="frame">LIKE</div>
     </div>
+
+    <!-- Share -->
     <div class="item" id="step2">
       <div class="frame">SHARE</div>
     </div>
+
+    <!-- Subscribe -->
     <div class="item" id="step3">
       <div class="frame">SUBSCRIBE</div>
     </div>
+
+    <!-- Bell Icon -->
     <div class="item" id="step4">
       <div class="frame">
         <svg class="bell-icon" viewBox="0 0 24 24">
@@ -93,11 +102,11 @@
 
   <script>
     const steps = [
-      document.getElementById("step0"), // YouTube
-      document.getElementById("step1"), // LIKE
-      document.getElementById("step2"), // SHARE
-      document.getElementById("step3"), // SUBSCRIBE
-      document.getElementById("step4"), // BELL
+      document.getElementById("step0"), // YouTube icon
+      document.getElementById("step1"), // Like
+      document.getElementById("step2"), // Share
+      document.getElementById("step3"), // Subscribe
+      document.getElementById("step4"), // Bell
     ];
 
     let current = 0;
@@ -106,7 +115,7 @@
       steps[current].classList.remove("show");
       current = (current + 1) % steps.length;
       steps[current].classList.add("show");
-    }, 1000); // 1-second delay between steps
+    }, 1000); // 1 second between items
   </script>
 </body>
 </html>
