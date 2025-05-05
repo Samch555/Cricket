@@ -49,23 +49,27 @@
       font-weight: 900;
       letter-spacing: 2px;
       box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .item img {
+    .item img.logo {
       width: 150px;
       height: auto;
     }
 
     .bell-icon {
-      width: 40px;
-      filter: invert(1);
+      width: 32px;
+      height: 32px;
+      fill: white;
     }
   </style>
 </head>
 <body>
   <div class="stage">
     <div class="item show" id="step0">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" />
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" />
     </div>
     <div class="item" id="step1">
       <div class="frame">LIKE</div>
@@ -78,7 +82,10 @@
     </div>
     <div class="item" id="step4">
       <div class="frame">
-        <img class="bell-icon" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Font_Awesome_5_solid_bell.svg" alt="Bell Icon" />
+        <!-- Inline SVG bell icon -->
+        <svg class="bell-icon" viewBox="0 0 24 24">
+          <path d="M12 24c1.104 0 1.99-.896 1.99-2h-3.98c0 1.104.886 2 1.99 2zm6.707-6c-.775-1.047-2.707-1.763-2.707-6v-2c0-2.967-2.165-5.435-5-5.91V3a1 1 0 0 0-2 0v1.09C6.165 4.565 4 7.033 4 10v2c0 4.237-1.932 4.953-2.707 6A.996.996 0 0 0 2 19h20a.996.996 0 0 0 .707-1z"/>
+        </svg>
       </div>
     </div>
   </div>
