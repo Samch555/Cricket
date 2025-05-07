@@ -1,121 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YouTube Sequence</title>
+  <meta charset="UTF-8">
+  <title>Rotating Semi-Finals</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: transparent;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .rotating-text {
+      font-size: 50px;
       font-family: 'Arial Black', sans-serif;
+      color: #fff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff9900;
+      animation: rotate 5s linear infinite, glow 2s ease-in-out infinite alternate;
     }
 
-    .stage {
-      width: 320px;
-      height: 120px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .item {
-      position: absolute;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      text-align: center;
-    }
-
-    .item.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .frame {
-      border: 4px solid red;
-      padding: 12px 30px;
-      border-radius: 20px;
-      background: #ff0000;
-      color: white;
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .item img.logo {
-      width: 60px;
-      height: auto;
-    }
-
-    .bell-icon {
-      width: 32px;
-      height: 32px;
-      fill: white;
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff9900;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ffcc, 0 0 30px #ffff00, 0 0 40px #ff00ff;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="stage">
-    <!-- YouTube Icon -->
-    <div class="item show" id="step0">
-      <div class="frame">
-        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/240px-YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" />
-      </div>
-    </div>
-
-    <!-- Like -->
-    <div class="item" id="step1">
-      <div class="frame">LIKE</div>
-    </div>
-
-    <!-- Share -->
-    <div class="item" id="step2">
-      <div class="frame">SHARE</div>
-    </div>
-
-    <!-- Subscribe -->
-    <div class="item" id="step3">
-      <div class="frame">SUBSCRIBE</div>
-    </div>
-
-    <!-- Bell Icon -->
-    <div class="item" id="step4">
-      <div class="frame">
-        <svg class="bell-icon" viewBox="0 0 24 24">
-          <path d="M12 24c1.104 0 1.99-.896 1.99-2h-3.98c0 1.104.886 2 1.99 2zm6.707-6c-.775-1.047-2.707-1.763-2.707-6v-2c0-2.967-2.165-5.435-5-5.91V3a1 1 0 0 0-2 0v1.09C6.165 4.565 4 7.033 4 10v2c0 4.237-1.932 4.953-2.707 6A.996.996 0 0 0 2 19h20a.996.996 0 0 0 .707-1z"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const steps = [
-      document.getElementById("step0"), // YouTube icon
-      document.getElementById("step1"), // Like
-      document.getElementById("step2"), // Share
-      document.getElementById("step3"), // Subscribe
-      document.getElementById("step4"), // Bell
-    ];
-
-    let current = 0;
-
-    setInterval(() => {
-      steps[current].classList.remove("show");
-      current = (current + 1) % steps.length;
-      steps[current].classList.add("show");
-    }, 1000); // 1 second between items
-  </script>
+  <div class="rotating-text">🏏 Semi-Finals!</div>
 </body>
 </html>
